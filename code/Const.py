@@ -7,3 +7,7 @@ MENU_OPTION = (
     'START GAME',
     'EXIT'
 )
+
+# COLORS
+C_ORANGE = (255, 128, 0)
+C_WHITE = (255, 255, 255)

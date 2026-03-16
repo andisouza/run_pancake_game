@@ -12,7 +12,7 @@ class Game:
     def run(self, ):
         while True:
             menu = Menu(self.window)
-            menu.run
+            menu.run()
             pass
 
     def jump(self, ):

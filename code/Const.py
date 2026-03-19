@@ -12,3 +12,10 @@ MENU_OPTION = (
 C_ORANGE = (255, 128, 0)
 C_GREY = (105, 105, 105)
 C_BLACK = (0, 0, 0)
+
+# ENTITY SPEED
+ENTITY_SPEED = {
+    'Lv1Bg1': 1,
+    'Lv1Bg2': 2,
+    'Lv1Bg3': 3,
+}

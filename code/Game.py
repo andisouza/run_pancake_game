@@ -15,7 +15,7 @@ class Game:
             menu_return = menu.run()
             
             if menu_return == MENU_OPTION[0]:
-                level = Level(self.window, 'Level1', menu_return)
+                level = Level(self.window, 'Level1')
                 level_return = level.run()
             else:
                 pygame.quit()
@@ -29,9 +29,3 @@ class Game:
 
     def dodge(self, ):
         pass
-
-# while True:
-#     for event in pygame.event.get():
-#         if event.type == pygame.QUIT:
-#             pygame.quit() # close window
-#             quit() # end pygame

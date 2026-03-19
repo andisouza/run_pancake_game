@@ -26,21 +26,32 @@ class Player(Entity):
         self.y_vel = 0
         self.on_ground = True
         self.is_dodging = False
+        self.jump_sound = pygame.mixer.Sound('./assets/Sons/jump.mp3')
+        self.jump_sound.set_volume(0.5)
+        self.dodge_sound = pygame.mixer.Sound('./assets/Sons/desvia.mp3')
+        self.dodge_sound.set_volume(0.4)
+        self.was_dodging = False
 
     def move(self):
         keys = pygame.key.get_pressed()
         self.is_dodging = keys[pygame.K_DOWN]
 
-        # abaixado
+        # detecta início do dodge (som só uma vez)
+        if self.is_dodging and not self.was_dodging:
+            self.dodge_sound.play()
+
+        # troca sprite
         if self.is_dodging:
             self.surf = self.dodge_frame
         else:
-            # corrida normal
             self.counter += self.animation_speed
             if self.counter >= 1:
                 self.counter = 0
                 self.frame_index = (self.frame_index + 1) % len(self.frames)
                 self.surf = self.frames[self.frame_index]
+
+        # atualiza estado anterior (ESSENCIAL)
+        self.was_dodging = self.is_dodging
 
         # gravidade e pulo
         self.y_vel += 1
@@ -56,3 +67,4 @@ class Player(Entity):
         if self.on_ground and not self.is_dodging:
             self.y_vel = -15
             self.on_ground = False
+            self.jump_sound.play()

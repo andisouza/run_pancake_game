@@ -8,6 +8,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.window = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+        pygame.mixer.init()
 
     def run(self, ):
         while True:
@@ -15,8 +16,17 @@ class Game:
             menu_return = menu.run()
             
             if menu_return == MENU_OPTION[0]:
-                level = Level(self.window)
-                level_return = level.run()
+                while True:
+                    level = Level(self.window)
+                    result = level.run()
+
+                    if result == "game_over":
+                        action = level.game_over_screen()
+
+                        if action == "restart":
+                            continue
+                        elif action == "menu":
+                            break
             else:
                 pygame.quit()
                 quit()

@@ -10,6 +10,7 @@ class Menu:
         self.window = window
         self.surf = pygame.image.load('./assets/Background/Menu1.png') # Carrega a img
         self.rect = self.surf.get_rect(left=0, top=0) # Cria o retangulo q vai a img
+        self.select_sound = pygame.mixer.Sound('./assets/Sons/menuselec.wav')
 
     def run(self, ):
         menu_option = 0
@@ -17,6 +18,7 @@ class Menu:
         # tocar a música de fundo
         pygame.mixer_music.load('./assets/Sons/song.mp3')
         pygame.mixer_music.play(-1)
+        pygame.mixer_music.set_volume(0.1)
         
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
@@ -40,11 +42,13 @@ class Menu:
                 # key down / key up
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
+                        self.select_sound.play()
                         if menu_option < len(MENU_OPTION) - 1:
                             menu_option += 1
                         else:
                             menu_option = 0
                     elif event.key == pygame.K_UP:
+                        self.select_sound.play()
                         if menu_option > 0:
                             menu_option -= 1
                         else:

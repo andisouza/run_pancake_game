@@ -15,8 +15,8 @@ class Menu:
         menu_option = 0
 
         # tocar a música de fundo
-        # pygame.mixer_music.load('./assets/Sons/song.mp3')
-        # pygame.mixer_music.play(-1)
+        pygame.mixer_music.load('./assets/Sons/song.mp3')
+        pygame.mixer_music.play(-1)
         
         while True:
             self.window.blit(source=self.surf, dest=self.rect)

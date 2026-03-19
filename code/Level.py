@@ -81,9 +81,9 @@ class Level:
 
                 # cria obstáculo
                 if tipo == 'Toco':
-                    pos_y = 500
+                    pos_y = 480
                 else:
-                    pos_y = 400
+                    pos_y = 410
 
                 obstacle = Obstacle(tipo, (1100, pos_y))
 
@@ -124,7 +124,7 @@ class Level:
 
             font = pygame.font.SysFont('Arial', 30)
             score_surf = font.render(f"Score: {int(self.score)}", True, (255, 255, 255))
-            self.window.blit(score_surf, (900, 20))
+            self.window.blit(score_surf, (20, 20))
 
             if self.game_over:
                 # overlay escuro

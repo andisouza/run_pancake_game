@@ -14,8 +14,9 @@ class Player(Entity):
         ]
         # frame abaixado
         self.dodge_frame = pygame.transform.scale(
-            pygame.image.load('./assets/Panqueca/Pq5.png').convert_alpha(), size
-        )
+            pygame.image.load('./assets/Panqueca/Pq5.png').convert_alpha(),
+            (80, 80)
+)
 
         self.frame_index = 0
         self.surf = self.frames[self.frame_index]
@@ -42,13 +43,18 @@ class Player(Entity):
 
         # troca sprite
         if self.is_dodging:
+            bottom = self.rect.bottom  # guarda posição do chão
             self.surf = self.dodge_frame
+            self.rect = self.surf.get_rect(midbottom=(self.rect.centerx, bottom))
         else:
             self.counter += self.animation_speed
             if self.counter >= 1:
                 self.counter = 0
                 self.frame_index = (self.frame_index + 1) % len(self.frames)
+
+                bottom = self.rect.bottom
                 self.surf = self.frames[self.frame_index]
+                self.rect = self.surf.get_rect(midbottom=(self.rect.centerx, bottom))
 
         # atualiza estado anterior (ESSENCIAL)
         self.was_dodging = self.is_dodging
@@ -65,6 +71,6 @@ class Player(Entity):
 
     def jump(self):
         if self.on_ground and not self.is_dodging:
-            self.y_vel = -15
+            self.y_vel = -16
             self.on_ground = False
             self.jump_sound.play()

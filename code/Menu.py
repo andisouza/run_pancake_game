@@ -11,6 +11,10 @@ class Menu:
         self.surf = pygame.image.load('./assets/Background/Menu1.png') # Carrega a img
         self.rect = self.surf.get_rect(left=0, top=0) # Cria o retangulo q vai a img
         self.select_sound = pygame.mixer.Sound('./assets/Sons/menuselec.wav')
+        self.cloud = pygame.image.load('./assets/Background/Menu2.png').convert_alpha()
+        self.cloud_x1 = 0
+        self.cloud_x2 = self.cloud.get_width()
+        self.cloud_speed = 0.3
 
     def run(self, ):
         menu_option = 0
@@ -22,6 +26,9 @@ class Menu:
         
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
+            self.window.blit(self.cloud, (self.cloud_x1, 0))
+            self.window.blit(self.cloud, (self.cloud_x2, 0))
+
             self.menu_text(120, "Jump", (C_ORANGE), ((WIN_WIDTH / 2), 200))
             self.menu_text(100, "Pancake", (C_ORANGE), ((WIN_WIDTH / 2), 300))
             
@@ -31,6 +38,17 @@ class Menu:
                 else:
                     self.menu_text(20, MENU_OPTION[i], (C_GREY), ((WIN_WIDTH / 2), 380 + 25 * i))
             
+            # MOVIMENTO DAS NUVENS
+            self.cloud_x1 -= self.cloud_speed
+            self.cloud_x2 -= self.cloud_speed
+
+            # loop infinito
+            if self.cloud_x1 <= -self.cloud.get_width():
+                self.cloud_x1 = self.cloud.get_width()
+
+            if self.cloud_x2 <= -self.cloud.get_width():
+                self.cloud_x2 = self.cloud.get_width()
+
             pygame.display.flip()
 
             # verifica eventos

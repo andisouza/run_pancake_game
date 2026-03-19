@@ -12,10 +12,16 @@ class Obstacle():
 
         # PASSARO 
         elif self.name == 'Passaro':
+            size = (38, 38)
+
             self.frames = [
-                pygame.image.load(f'./assets/Obstaculos/passaro-{i}.png').convert_alpha()
+                pygame.transform.scale(
+                    pygame.image.load(f'./assets/Obstaculos/passaro-{i}.png').convert_alpha(),
+                    size
+                )
                 for i in range(1, 4)
             ]
+
             self.frame_index = 0
             self.counter = 0
             self.animation_speed = 0.2

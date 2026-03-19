@@ -20,6 +20,12 @@ class Game:
                     level = Level(self.window)
                     result = level.run()
 
+                    if result == "restart":
+                        continue  # recria o level → restart
+
+                    elif result == "menu":
+                        break  # sai do loop → volta pro menu
+
                     if result == "game_over":
                         action = level.game_over_screen()
 
